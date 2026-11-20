@@ -1,0 +1,126 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>흐릿해진 귀갓길 | 골목길 위험 발견</title><style>
+*{box-sizing:border-box}body{margin:0;background:#102036;color:#f1f6ff;font-family:system-ui,'Malgun Gothic',sans-serif}main{max-width:1220px;margin:auto;padding:14px}h1{font-size:clamp(19px,3vw,27px);margin:4px 0 7px}.subtitle{color:#c5d5e9;margin:0 0 12px;font-size:14px}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:9px}.counter{font-size:15px;color:#c9d9f1}.stage{position:relative;aspect-ratio:1672/941;width:100%;overflow:hidden;background:#6b7786;border-radius:12px}.scene{position:absolute;inset:0;display:none}.scene.active{display:block}.scene img{position:absolute;pointer-events:none;user-select:none;-webkit-user-drag:none}.bg{inset:0;width:100%;height:100%;z-index:0}.reverseCar{position:absolute;left:26.7%;top:29.75%;width:20.5%;height:29.8%;transform-origin:50% 83%;z-index:2;will-change:transform}.reverseCar img{position:static;width:100%;height:100%;display:block}.reverseCar.move{transition:transform 3.2s cubic-bezier(.25,.12,.7,1);transform:translate(4%,23%) scale(1.27)}.shadow{position:absolute;left:27%;top:57%;width:20%;height:3.2%;background:#18202855;border-radius:50%;filter:blur(9px);z-index:1;transform-origin:50% 50%}.shadow.move{transition:transform 3.2s cubic-bezier(.25,.12,.7,1);transform:translate(4%,160%) scale(1.25)}.bike{z-index:1;left:63.33732%;top:27.63018%;width:42.40431%;height:auto;will-change:transform}.bike.go{animation:bikeApproach 1.5s linear forwards}.wall{inset:0;width:100%;height:100%;z-index:2;clip-path:polygon(81.39952% 0,100% 0,100% 100%,80.80144% 100%)}.parkingCar{position:absolute;z-index:1;left:64.6531%;top:26.2487%;width:26.7943%;height:auto;will-change:transform}.parkingWall{position:absolute;inset:0;width:100%;height:100%;z-index:2;clip-path:polygon(74.8804% 0,100% 0,100% 100%,75.1196% 100%)}.planter{position:absolute;inset:0;width:100%;height:100%;z-index:3}.hud{position:absolute;z-index:7;left:50%;top:2%;transform:translateX(-50%);max-width:92%;background:#0c2845e6;padding:8px 14px;border-radius:12px;font-weight:750;text-align:center;font-size:clamp(13px,2.1vw,20px);pointer-events:none}.controls{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}button{border:0;border-radius:12px;padding:14px 20px;font-weight:800;font-size:17px;cursor:pointer;background:#e7f1ff;color:#10243b}button.primary{background:#f15450;color:white;min-width:230px;font-size:22px}button:disabled{opacity:.45;cursor:default}.results{margin:12px auto 0;max-width:800px;background:#1a314e;border-radius:12px;padding:12px 18px}.results[hidden]{display:none}.results p{margin:7px 0}.small{color:#b5cce3;font-size:13px;margin-top:12px;text-align:center}@keyframes bikeApproach{
+ 0.000%{transform:translate(-0.0000%,0.0000%) scale(1.00000)}
+ 1.667%{transform:translate(-2.0593%,-0.0537%) scale(1.00014)}
+ 3.333%{transform:translate(-4.0766%,-0.0937%) scale(1.00055)}
+ 5.000%{transform:translate(-6.0522%,-0.1196%) scale(1.00123)}
+ 6.667%{transform:translate(-7.9864%,-0.1312%) scale(1.00217)}
+ 8.333%{transform:translate(-9.8796%,-0.1282%) scale(1.00334)}
+ 10.000%{transform:translate(-11.7320%,-0.1103%) scale(1.00476)}
+ 11.667%{transform:translate(-13.5440%,-0.0771%) scale(1.00640)}
+ 13.333%{transform:translate(-15.3159%,-0.0284%) scale(1.00826)}
+ 15.000%{transform:translate(-17.0480%,0.0361%) scale(1.01033)}
+ 16.667%{transform:translate(-18.7405%,0.1167%) scale(1.01259)}
+ 18.333%{transform:translate(-20.3939%,0.2137%) scale(1.01505)}
+ 20.000%{transform:translate(-22.0085%,0.3274%) scale(1.01768)}
+ 21.667%{transform:translate(-23.5844%,0.4581%) scale(1.02048)}
+ 23.333%{transform:translate(-25.1222%,0.6062%) scale(1.02345)}
+ 25.000%{transform:translate(-26.6220%,0.7718%) scale(1.02656)}
+ 26.667%{transform:translate(-28.0842%,0.9553%) scale(1.02982)}
+ 28.333%{transform:translate(-29.5091%,1.1570%) scale(1.03321)}
+ 30.000%{transform:translate(-30.8970%,1.3772%) scale(1.03672)}
+ 31.667%{transform:translate(-32.2483%,1.6162%) scale(1.04035)}
+ 33.333%{transform:translate(-33.5632%,1.8743%) scale(1.04407)}
+ 35.000%{transform:translate(-34.8420%,2.1517%) scale(1.04790)}
+ 36.667%{transform:translate(-36.0851%,2.4488%) scale(1.05181)}
+ 38.333%{transform:translate(-37.2928%,2.7659%) scale(1.05579)}
+ 40.000%{transform:translate(-38.4654%,3.1032%) scale(1.05984)}
+ 41.667%{transform:translate(-39.6032%,3.4611%) scale(1.06395)}
+ 43.333%{transform:translate(-40.7066%,3.8399%) scale(1.06810)}
+ 45.000%{transform:translate(-41.7757%,4.2398%) scale(1.07229)}
+ 46.667%{transform:translate(-42.8111%,4.6612%) scale(1.07651)}
+ 48.333%{transform:translate(-43.8128%,5.1044%) scale(1.08075)}
+ 50.000%{transform:translate(-44.7814%,5.5696%) scale(1.08500)}
+ 51.667%{transform:translate(-45.7170%,6.0571%) scale(1.08925)}
+ 53.333%{transform:translate(-46.6201%,6.5673%) scale(1.09349)}
+ 55.000%{transform:translate(-47.4908%,7.1004%) scale(1.09771)}
+ 56.667%{transform:translate(-48.3296%,7.6567%) scale(1.10190)}
+ 58.333%{transform:translate(-49.1368%,8.2366%) scale(1.10605)}
+ 60.000%{transform:translate(-49.9126%,8.8403%) scale(1.11016)}
+ 61.667%{transform:translate(-50.6573%,9.4682%) scale(1.11421)}
+ 63.333%{transform:translate(-51.3714%,10.1204%) scale(1.11819)}
+ 65.000%{transform:translate(-52.0550%,10.7974%) scale(1.12210)}
+ 66.667%{transform:translate(-52.7086%,11.4994%) scale(1.12593)}
+ 68.333%{transform:translate(-53.3323%,12.2267%) scale(1.12965)}
+ 70.000%{transform:translate(-53.9267%,12.9796%) scale(1.13328)}
+ 71.667%{transform:translate(-54.4918%,13.7585%) scale(1.13679)}
+ 73.333%{transform:translate(-55.0282%,14.5635%) scale(1.14018)}
+ 75.000%{transform:translate(-55.5360%,15.3950%) scale(1.14344)}
+ 76.667%{transform:translate(-56.0156%,16.2534%) scale(1.14655)}
+ 78.333%{transform:translate(-56.4673%,17.1388%) scale(1.14952)}
+ 80.000%{transform:translate(-56.8914%,18.0516%) scale(1.15232)}
+ 81.667%{transform:translate(-57.2883%,18.9921%) scale(1.15495)}
+ 83.333%{transform:translate(-57.6582%,19.9606%) scale(1.15741)}
+ 85.000%{transform:translate(-58.0014%,20.9574%) scale(1.15967)}
+ 86.667%{transform:translate(-58.3183%,21.9827%) scale(1.16174)}
+ 88.333%{transform:translate(-58.6093%,23.0370%) scale(1.16360)}
+ 90.000%{transform:translate(-58.8745%,24.1204%) scale(1.16524)}
+ 91.667%{transform:translate(-59.1143%,25.2332%) scale(1.16666)}
+ 93.333%{transform:translate(-59.3290%,26.3759%) scale(1.16783)}
+ 95.000%{transform:translate(-59.5190%,27.5486%) scale(1.16877)}
+ 96.667%{transform:translate(-59.6846%,28.7516%) scale(1.16945)}
+ 98.333%{transform:translate(-59.8260%,29.9853%) scale(1.16986)}
+ 100.000%{transform:translate(-59.9436%,31.2500%) scale(1.17000)}
+}.reverseCar .reverse-light{position:absolute;top:40.5%;width:7.2%;height:3.1%;background:#fffdf0;filter:blur(1px);box-shadow:0 0 9px 3px #fff7c4;opacity:0;border-radius:25%;pointer-events:none;transition:opacity .12s}.reverseCar .reverse-light.left{left:10.5%}.reverseCar .reverse-light.right{right:10.5%}.reverseCar.lights .reverse-light{opacity:.95}
+/* 고글 착용용 가독성: 작은 보조문구는 제거, 조작과 핵심 지시만 표시 */
+.subtitle,.small{display:none!important}
+main{padding:8px 12px}h1{font-size:clamp(22px,2.7vw,32px);margin:2px 0 8px}
+.top{margin-bottom:6px}.counter{font-size:clamp(17px,2vw,23px);font-weight:800;color:#fff}
+.hud{font-size:clamp(23px,3.3vw,38px);font-weight:900;color:#fff;background:#081a30f2;border:2px solid #fff;padding:10px 20px;line-height:1.2;text-shadow:0 2px 3px #000}
+.controls{margin-top:9px;gap:12px}.controls button{font-size:clamp(20px,2.4vw,29px);padding:13px 18px}
+button.primary{background:#db171d;color:#fff;font-size:clamp(30px,4.1vw,48px);font-weight:950;min-width:35%;border:4px solid white;text-shadow:0 2px 2px #700;box-shadow:0 3px 12px #0007}
+button.primary:disabled{opacity:.62}
+
+/* iPad 가로모드: 화면 높이에 맞춰 게임 전체 표시 */
+html,body{height:100%;overflow:hidden}body{min-height:0}
+main{width:100%;max-width:none;height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;gap:0;padding:6px 10px 8px;overflow:hidden}
+.top{position:absolute;z-index:10;left:16px;right:16px;top:10px;pointer-events:none;margin:0;justify-content:space-between}
+.top .counter{font-size:clamp(14px,1.65vw,20px);background:#071827d9;border-radius:8px;padding:5px 9px;text-shadow:0 1px 2px #000}
+.stage{width:auto;max-width:100%;height:auto;flex:1 1 auto;min-height:0;aspect-ratio:1672/941;max-height:calc(100dvh - 100px);border-radius:9px}
+.controls{width:min(100%,900px);flex:0 0 auto;flex-wrap:nowrap;margin-top:5px;gap:8px;height:clamp(58px,11dvh,82px)}
+.controls button{padding:4px 10px;font-size:clamp(17px,2.3vw,25px);min-width:0;white-space:nowrap}
+.controls button.primary{flex:1 1 46%;min-width:0;font-size:clamp(27px,4vw,44px);border-width:3px}
+.controls #start,.controls #reset{flex:1 1 27%}
+.hud{font-size:clamp(19px,2.6vw,32px);padding:7px 13px;top:3%}
+.results:not([hidden]){position:fixed;z-index:30;inset:0;margin:0;max-width:none;border-radius:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:22px;overflow:auto;background:#102036f5;font-size:clamp(18px,2.5vw,26px)}
+.results:not([hidden]) p{max-width:800px}
+@media(max-height:650px){main{padding:3px 6px}.stage{max-height:calc(100dvh - 72px)}.controls{height:clamp(49px,10dvh,66px)}.controls button{font-size:17px}.controls button.primary{font-size:29px}.hud{font-size:20px;padding:5px 10px}}
+
+/* 멈춤 버튼을 가로로 늘리지 않고 명확한 단독 버튼 형태로 */
+.controls button.primary{flex:0 0 auto!important;width:clamp(124px,19vw,184px)!important;min-width:0!important;max-width:30%;border-radius:16px!important;}
+.controls #start,.controls #reset{flex:0 1 170px!important;}
+.controls{justify-content:center;}
+
+/* 고글 체험: 본 게임에는 멈춤 버튼만, 화면 안쪽에 배치 */
+main{position:relative;padding:4px!important}
+.stage{max-height:calc(100dvh - 8px)!important;flex:1 1 auto!important}
+.controls{position:absolute!important;left:50%;bottom:clamp(28px,9dvh,84px);transform:translateX(-50%);width:auto!important;height:auto!important;margin:0!important;z-index:15;pointer-events:none}
+.controls #start,.controls #reset{display:none!important}
+.controls #stop{pointer-events:auto;width:clamp(145px,19vw,210px)!important;max-width:none!important;min-height:clamp(64px,12dvh,90px);font-size:clamp(32px,4vw,48px)!important;background:#db171d;color:white;border:4px solid white;box-shadow:0 6px 24px #0009;border-radius:22px!important}
+.start-screen{position:absolute;inset:0;z-index:25;background:#0b1b30f2;display:flex;align-items:center;justify-content:center;padding:24px}
+.start-screen[hidden]{display:none!important}
+.start-card{text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;color:white}
+.start-heading{font-weight:900;font-size:clamp(30px,4.5vw,54px)}
+.start-guide{font-size:clamp(21px,2.7vw,33px);font-weight:800;line-height:1.5}
+.start-guide strong{color:#ff7777}
+#startBig{font-size:clamp(29px,4vw,48px);font-weight:950;background:#ffdf60;color:#1a2635;border:4px solid white;padding:18px 52px;border-radius:22px;box-shadow:0 7px 24px #0009}
+#restartBig{font-size:clamp(22px,3vw,32px);background:#ffdf60;color:#152238;border:3px solid white;border-radius:14px;margin-top:18px;padding:14px 30px}
+/* 실험 중 화면 위쪽의 불필요한 작은 상태 글씨 제거 */
+.top{display:none!important}
+.hud{font-size:clamp(22px,3vw,34px)!important}
+/* 본게임 중 상황 해설 및 지시 팝업 완전 숨김: 시작 화면에서만 설명 */
+.hud,#hud{display:none!important}
+</style></head><body><main><p class="subtitle" hidden>정지된 골목을 관찰하세요. 위험한 변화가 시작되면 <b>멈춰!</b>를 누르세요. 아무 변화가 없을 때는 누르지 않습니다.</p><div class="top"><span id="counter" class="counter">준비</span><span id="mode" class="counter">연습 모드</span></div><div class="stage">
+<div class="scene" id="reverse"><img class="bg" src="assets/reverse_background.jpg"><div class="shadow" id="shadow"></div><div class="reverseCar" id="reverseCar"><img id="reverseImage" src="assets/car_off_supplied.png" alt="정지한 후진 차량"><span class="reverse-light left"></span><span class="reverse-light right"></span></div></div>
+<div class="scene" id="bikeScene"><img class="bg" src="assets/bike_alley.jpg"><img class="bike" id="bike" src="assets/bike_bicycle.png" alt="오른쪽 담장 뒤의 자전거"><img class="wall" src="assets/bike_foreground.png" alt=""></div>
+<div class="scene" id="parking"><img class="bg" src="assets/parking_alley.png"><img class="parkingCar" id="parkingCar" src="assets/parking_car.png" alt="주차장 출구 차량"><img class="parkingWall" src="assets/parking_alley.png" alt=""><img class="planter" src="assets/parking_planter_foreground.png" alt=""></div>
+<div class="hud" id="hud">시작 버튼을 누르세요</div><div class="start-screen" id="startScreen"><div class="start-card"><div class="start-heading">골목길 위험 발견</div><button type="button" id="startBig">체험 시작</button></div></div></div>
+<div class="controls"><button id="start">▶ 미션 시작</button><button id="stop" class="primary" disabled>멈춤</button><button id="reset">↻ 처음부터</button></div><section class="results" id="results" hidden></section><p class="small" hidden>위험한 변화가 보일 때만 ‘멈춰!’를 누르세요. 장면은 자동으로 넘어갑니다.</p></main><script>
+const scenes=['reverse','bike','parking'];const el=id=>document.getElementById(id);let index=-1,onset=0,finished=false,active=false,timers=[],records=[],parkingAnim=null;
+function timer(fn,ms){const t=setTimeout(fn,ms);timers.push(t)}function clearTimers(){timers.forEach(clearTimeout);timers=[];if(parkingAnim){parkingAnim.cancel();parkingAnim=null}}
+function resetGraphics(){const rc=el('reverseCar'),sh=el('shadow'),bike=el('bike'),pc=el('parkingCar');for(const e of [rc,sh]){e.style.transition='none';e.classList.remove('move')}rc.classList.remove('lights');void rc.offsetWidth;for(const e of [rc,sh])e.style.transition='';bike.style.animation='none';bike.style.transform='';bike.classList.remove('go');void bike.offsetWidth;bike.style.animation='';pc.style.transform='';}
+function stopMotion(){const bike=el('bike');if(bike.classList.contains('go')){const mat=getComputedStyle(bike).transform;bike.style.animation='none';bike.classList.remove('go');bike.style.transform=mat}for(const id of ['reverseCar','shadow']){const e=el(id);if(e.classList.contains('move')){const mat=getComputedStyle(e).transform;e.style.transition='none';e.classList.remove('move');e.style.transform=mat}}if(parkingAnim){parkingAnim.pause()}}
+function show(i){clearTimers();resetGraphics();index=i;finished=false;onset=0;active=true;el('stop').disabled=false;el('start').disabled=true;for(const id of ['reverse','bikeScene','parking'])el(id).classList.remove('active');const kind=scenes[i];const waitMs=2000+Math.random()*2000;el('counter').textContent=`장면 ${i+1} / ${scenes.length}`;if(kind==='reverse'){el('reverse').classList.add('active');el('hud').textContent='위험을 살펴보세요';timer(()=>{onset=performance.now();el('reverseCar').classList.add('lights');el('hud').textContent='위험하면 멈춤!';timer(()=>{el('reverseCar').classList.add('move');el('shadow').classList.add('move')},450)},waitMs)}else if(kind==='bike'){el('bikeScene').classList.add('active');el('hud').textContent='위험을 살펴보세요';timer(()=>{onset=performance.now();el('bike').classList.add('go');el('hud').textContent='위험하면 멈춤!'},waitMs)}else if(kind==='parking'){el('parking').classList.add('active');el('hud').textContent='위험을 살펴보세요';timer(()=>{onset=performance.now();const dx=-320,dy=100,w=448,h=252;const path=[{offset:0,transform:'translate(0px,0px) scale(1)'},{offset:.30,transform:`translate(${dx*.30/w*100}%,${dy*.14/h*100}%) scale(1.065)`},{offset:.66,transform:`translate(${dx*.69/w*100}%,${dy*.57/h*100}%) scale(1.165)`},{offset:1,transform:`translate(${dx/w*100}%,${dy/h*100}%) scale(1.25)`}];parkingAnim=el('parkingCar').animate(path,{duration:1500,fill:'forwards',easing:'cubic-bezier(.22,.55,.40,1)'});el('hud').textContent='위험하면 멈춤!'},waitMs)}else{el('bikeScene').classList.add('active');el('hud').textContent='위험이 없으면 누르지 마세요';timer(()=>finish('safe'),2800)}if(kind!=='safe')timer(()=>{if(!finished)finish('miss')},waitMs+(kind==='reverse'?5400:3500))}
+function finish(type){if(finished)return;finished=true;active=false;stopMotion();timers.forEach(clearTimeout);timers=[];el('stop').disabled=true;const kind=scenes[index];let label='';if(type==='hit'){const sec=((performance.now()-onset)/1000).toFixed(2);label=`위험 발견 · ${sec}초`;records.push({kind,label,type,seconds:Number(sec)})}else if(type==='early'){label='위험 시작 전 성급한 멈춤';records.push({kind,label,type})}else if(type==='false'){label='안전 구간에서 잘못 멈춤';records.push({kind,label,type})}else if(type==='safe'){label='안전 구간 통과';records.push({kind,label,type})}else{label='위험 신호 미반응';records.push({kind,label,type})}el('hud').textContent=label;timer(()=>advance(),1150)}
+el('stop').onclick=()=>{if(!active||finished)return;finish(scenes[index]==='safe'?'false':onset?'hit':'early')};function beginMission(){el('startScreen').hidden=true;records=[];el('results').hidden=true;show(0)}el('start').onclick=beginMission;el('startBig').onclick=beginMission;function advance(){if(index+1<scenes.length){show(index+1)}else{active=false;el('stop').disabled=true;el('start').disabled=false;el('start').textContent='▶ 다시 시작';el('counter').textContent='미션 완료';el('hud').textContent='골목길 관찰 완료';el('results').hidden=false;const hits=records.filter(r=>r.type==='hit');const missed=records.filter(r=>r.type!=='hit');const average=hits.length?(hits.reduce((a,r)=>a+r.seconds,0)/hits.length).toFixed(2)+'초':'미반응';parent.postMessage({type:'missionDone',mission:1,value:average,detail:{success:hits.length,total:records.length,missed:missed.length}},'*');el('results').innerHTML='<strong>골목길 위험 발견 결과</strong>'+records.map((r,i)=>`<p>${i+1}. ${r.kind==='reverse'?'후진 차량':r.kind==='bike'?'자전거':'주차장 출구 차량'} — ${r.label}</p>`).join('')+'<button type="button" id="restartBig">다시 체험하기</button>';el('restartBig').onclick=()=>{el('reset').click()}}};el('reset').onclick=()=>{clearTimers();resetGraphics();index=-1;active=false;finished=false;records=[];for(const id of ['reverse','bikeScene','parking'])el(id).classList.remove('active');el('hud').textContent='시작 버튼을 누르세요';el('counter').textContent='준비';el('start').disabled=false;el('start').textContent='▶ 미션 시작';el('stop').disabled=true;el('results').hidden=true;el('startScreen').hidden=false};
+</script></body></html>

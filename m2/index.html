@@ -1,0 +1,90 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>횡단보도 · 첫 번째 차량 돌발 상황</title><style>*{box-sizing:border-box}body{margin:0;background:#121a23;color:white;font-family:system-ui,'Malgun Gothic',sans-serif}.wrap{max-width:1100px;margin:auto;padding:14px}h2{font-size:21px;margin:5px 0 10px}.stage{position:relative;overflow:hidden;aspect-ratio:1672/941;border-radius:15px;background:#333}canvas{display:block;width:100%;height:100%}.hud{position:absolute;top:14px;left:14px;padding:9px 13px;background:#10222dc9;border-radius:10px;font-weight:700}.status{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:#111b27d9;padding:8px 14px;border-radius:12px;white-space:nowrap;max-width:95%;overflow:hidden;text-overflow:ellipsis}.buttons{display:flex;gap:10px;margin-top:12px}.buttons button{flex:1;border:0;border-radius:13px;padding:17px;font-size:21px;font-weight:800;cursor:pointer}.walk{background:#a5edbd;color:#102a1d}.signal-wait{background:#d6e7fa;color:#19334e}.stop{background:#ffba9b;color:#4b1808}.reset{background:#e2e7f1;color:#15202f;flex:.5!important}p{color:#c3ccd6;line-height:1.55;font-size:14px}button:disabled{opacity:.4;cursor:default}.result-overlay{position:absolute;inset:0;background:rgba(7,17,28,.83);display:none;align-items:center;justify-content:center;padding:16px;z-index:5}.result-overlay.show{display:flex}.result-card{width:min(540px,100%);background:#fff;color:#172536;border-radius:20px;padding:24px;box-shadow:0 15px 50px #0006}.result-card h3{font-size:24px;margin:0 0 16px;text-align:center}.result-row{display:flex;align-items:center;gap:12px;padding:13px 4px;border-bottom:1px solid #e5eaf0}.result-icon{font-size:26px;width:36px;text-align:center}.result-label{font-weight:750;font-size:17px}.result-detail{font-size:15px;color:#536376;margin-top:3px}.result-state{margin-left:auto;font-size:22px}.result-summary{text-align:center;font-size:18px;font-weight:800;margin:19px 0 6px}.result-tip{text-align:center;color:#536376;font-size:14px;margin:0}.result-again{display:block;width:100%;background:#d6e7fa;color:#19334e;border:0;border-radius:12px;padding:13px;margin-top:17px;font-size:17px;font-weight:800;cursor:pointer}@media(max-width:600px){.result-card{padding:16px}.result-card h3{font-size:20px}.result-label{font-size:15px}.result-detail{font-size:13px}.result-summary{font-size:16px}}
+/* 고글 착용용 가독성: 개발 설명 제거, 주요 조작 강조 */
+.wrap{padding:8px 12px}h2{font-size:clamp(22px,2.6vw,30px);margin:3px 0 9px}
+.hud{font-size:clamp(20px,2.6vw,31px);font-weight:900;color:#fff;background:#081b2be8;border:2px solid #fff;text-shadow:0 2px 3px #000}
+.status{font-size:clamp(21px,2.7vw,31px);font-weight:900;color:#fff;background:#071827ef;border:2px solid #fff;padding:10px 18px;text-shadow:0 2px 3px #000;max-width:98%}
+.buttons{margin-top:10px}.buttons button{font-size:clamp(22px,2.6vw,31px);font-weight:900;padding:13px 12px}
+.buttons .stop{background:#d9161f;color:#fff;border:4px solid #fff;font-size:clamp(32px,4vw,47px);text-shadow:0 2px 2px #700;box-shadow:0 3px 12px #0008}
+.buttons .reset{font-size:clamp(18px,2vw,25px)}
+
+/* iPad 가로모드: 스크롤 없는 화면 맞춤 */
+html,body{height:100%;overflow:hidden}
+.wrap{height:100vh;height:100dvh;width:100%;max-width:none;display:flex;flex-direction:column;align-items:center;padding:6px 10px 8px;overflow:hidden}
+.stage{flex:1 1 auto;min-height:0;max-height:calc(100dvh - 100px);width:auto;max-width:100%;aspect-ratio:1672/941;border-radius:9px}
+.buttons{flex:0 0 auto;width:min(100%,960px);height:clamp(58px,11dvh,82px);margin-top:5px;gap:8px}
+.buttons button{padding:5px 10px;font-size:clamp(18px,2.4vw,27px)}
+.buttons .stop{font-size:clamp(28px,4vw,45px);border-width:3px}
+.buttons .reset{font-size:clamp(16px,1.9vw,22px)}
+.hud{font-size:clamp(16px,2vw,24px);padding:5px 10px;top:8px;left:8px}
+.status{font-size:clamp(19px,2.4vw,28px);padding:6px 12px;bottom:8px}
+@media(max-height:650px){.wrap{padding:3px 6px}.stage{max-height:calc(100dvh - 72px)}.buttons{height:clamp(49px,10dvh,66px)}.buttons button{font-size:18px}.buttons .stop{font-size:30px}.status{font-size:20px}}
+
+/* 멈춤 버튼을 독립적인 빨간 버튼으로 유지 */
+.buttons .stop{flex:0 0 auto!important;width:clamp(124px,19vw,184px)!important;min-width:0!important;border-radius:16px!important;}
+.buttons .walk{flex:0 1 240px!important;}
+.buttons .reset{flex:0 1 150px!important;}
+.buttons{justify-content:center;}
+
+/* 조작 버튼을 화면 내부로 올려 손이 닿기 쉽게 배치 */
+.wrap{position:relative!important;padding:4px!important}
+.stage{max-height:calc(100dvh - 8px)!important;flex:1 1 auto!important}
+.buttons{position:absolute!important;bottom:clamp(26px,8dvh,78px);left:50%;transform:translateX(-50%);z-index:4;width:auto!important;height:auto!important;margin:0!important;display:flex;justify-content:center;gap:12px;pointer-events:none}
+.buttons button{pointer-events:auto;flex:0 0 auto!important;width:clamp(145px,19vw,210px)!important;min-height:clamp(60px,11dvh,82px);padding:8px 12px!important;font-size:clamp(23px,3vw,35px)!important;border:3px solid white!important;border-radius:18px!important;box-shadow:0 5px 18px #0008}
+.buttons .stop{background:#d71920!important;color:#fff!important;font-size:clamp(30px,3.8vw,44px)!important;font-weight:950!important}
+.buttons .reset{display:none!important}
+@media(max-height:650px){.buttons{bottom:24px}.buttons button{min-height:58px}}
+/* 고글 체험: 상황 문구 제거, 버튼 하나만 하단에서 조금 위에 배치 */
+.hud,.status{display:none!important}
+.buttons{bottom:clamp(52px,13dvh,108px)!important;gap:0!important}
+.buttons .walk{background:#08a946!important;color:#fff!important;font-weight:950!important;text-shadow:0 2px 3px #075020!important;width:clamp(175px,23vw,240px)!important}
+.buttons .stop{width:clamp(155px,20vw,210px)!important}
+.buttons button{min-height:clamp(68px,12dvh,90px)!important}
+.buttons button:focus-visible{outline:4px solid #ffe35b;outline-offset:3px}
+@media(max-height:650px){.buttons{bottom:clamp(44px,11dvh,75px)!important}}
+</style></head><body><div class="wrap"><div class="stage"><canvas id="scene" width="1672" height="941"></canvas><div class="result-overlay" id="resultOverlay" role="dialog" aria-modal="true" aria-label="횡단보도 체험 결과"><div class="result-card"><h3>🚦 횡단보도 체험 결과</h3><div id="resultRows"></div><div class="result-summary" id="resultSummary"></div><p class="result-tip">신호를 확인하고 갑작스러운 위험에도 주의해요.</p><button class="result-again" id="resultAgain">↺ 다시 체험하기</button></div></div><div class="hud" id="hud">횡단 진행 0%</div><div class="status" id="status">초록불이면 걸어가기</div></div><div class="buttons"><button class="walk" id="walk">🚶 걸어가기</button><button class="stop" id="stop">멈춤</button><button class="reset" id="reset">↺ 처음</button></div></div><script>
+const W=1672,H=941,cv=document.getElementById('scene'),ctx=cv.getContext('2d'),hud=document.getElementById('hud'),status=document.getElementById('status'),walk=document.getElementById('walk');
+const source=document.createElement('canvas');source.width=W;source.height=H;const sc=source.getContext('2d');
+const images={};let loaded=0;for(const [k,path] of Object.entries({bg:'assets/background.png',suv:'assets/suv.png',sedan:'assets/sedan.png',motor:'assets/motorcycle.png',bgGreen:'assets/background_green.png'})){const im=new Image();im.onload=()=>{if(++loaded===5)draw()};im.src=path;images[k]=im}
+const white={x:-413,y:248,width:681,height:325},silver={x:-500,y:302,width:650,height:350};
+let progress=0,walking=false,done=false,last=0,walkElapsed=0,triggerAt=0,eventStart=null,eventElapsed=0,responded=false,carOffset=0,carDone=false,waitForResume=false,motorTriggered=false,motorElapsed=0,motorResponded=false,motorDone=false,motorReaction=0;
+let carReaction=null,carMissed=false,motorMissed=false,autoPause=0;
+let signalPhase='red',signalTime=0,signalJudged=false,signalMistakes=0;
+function showResults(){
+ const entries=[
+  {icon:'🚦',name:'신호등 확인',detail:signalMistakes===0?'안전하게 출발':`위험 상황 ${signalMistakes}번`,ok:signalMistakes===0},
+  {icon:'🚗',name:'자동차 위험',detail:responded?`${carReaction.toFixed(2)}초 만에 멈춤`:'멈추지 못함',ok:responded&&carReaction!==null&&carReaction<=1.5},
+  {icon:'🛵',name:'오토바이 위험',detail:motorResponded?`${motorReaction.toFixed(2)}초 만에 멈춤`:'멈추지 못함',ok:motorResponded&&motorReaction<=1.5}
+ ];
+ const rows=document.getElementById('resultRows');rows.replaceChildren();
+ entries.forEach(e=>{const r=document.createElement('div');r.className='result-row';const ic=document.createElement('div');ic.className='result-icon';ic.textContent=e.icon;const body=document.createElement('div');const label=document.createElement('div');label.className='result-label';label.textContent=e.name;const detail=document.createElement('div');detail.className='result-detail';detail.textContent=e.detail;body.append(label,detail);const state=document.createElement('div');state.className='result-state';state.textContent=e.ok?'✅':'⚠️';r.append(ic,body,state);rows.append(r)});
+ document.getElementById('resultSummary').textContent=`3가지 상황 중 ${entries.filter(e=>e.ok).length}가지 안전하게 대처!`;
+ parent.postMessage({type:'missionDone',mission:2,value:entries.filter(e=>e.ok).length+' / 3',detail:{signal:entries[0].ok,car:entries[1].ok,motor:entries[2].ok}},'*');
+ document.getElementById('resultOverlay').classList.add('show');
+}
+function signalUI(){
+ walk.style.display=(!signalJudged && !done)?'':'none';
+ document.getElementById('stop').style.display=(signalJudged && !done)?'':'none';
+ walk.textContent='걸어가기';
+}
+const rand=()=>1.5+Math.random()*0.3;
+function draw(){if(loaded!==5)return;sc.clearRect(0,0,W,H);sc.drawImage(signalPhase==='green'?images.bgGreen:images.bg,0,0,W,H);sc.drawImage(images.suv,white.x+carOffset,white.y,white.width,white.height);sc.drawImage(images.sedan,silver.x,silver.y,silver.width,silver.height);
+ const p=progress,zoom=1+2.2*p,sy=H*(0.22*p),sw=W/zoom,sh=H/zoom,sx=(W-sw)/2;ctx.clearRect(0,0,W,H);ctx.drawImage(source,sx,sy,sw,Math.min(sh,H-sy),0,0,W,H);if(motorTriggered&&!motorDone){const duration=1.6,m=Math.min(1,motorElapsed/duration),mw=W*.56,mh=mw*(1024/1536),my=H*.26,mx=-mw-35+(W+mw+70)*m;ctx.drawImage(images.motor,mx,my,mw,mh);}ctx.fillStyle='rgba(0,0,0,.10)';ctx.fillRect(0,0,W,H);hud.textContent=`횡단 진행 ${Math.round(p*100)}%`}
+function tick(t){if(!last)last=t;const dt=Math.min((t-last)/1000,.06);last=t;
+ if(!signalJudged && signalPhase==='red'){signalTime+=dt;if(signalTime>=3.2){signalPhase='green';status.textContent='초록불! 걸어가기';signalUI();}}
+ if(walking&&!done){walkElapsed+=dt;if(eventStart===null&&walkElapsed>=triggerAt){eventStart=t;eventElapsed=0;waitForResume=true;walking=false;autoPause=0;status.textContent='자동차 위험! 멈춤!';}
+ if(!waitForResume && responded && !motorTriggered && progress>=.55){motorTriggered=true;motorElapsed=0;walking=false;waitForResume=true;autoPause=0;status.textContent='오토바이 위험! 멈춤!';}if(!waitForResume){const u=Math.max(0,Math.min(1,progress));const smooth=u*u*(3-2*u),finalStretch=Math.max(0,Math.min(1,(u-.82)/.18)),finalEase=finalStretch*finalStretch*(3-2*finalStretch),speedFactor=.72+1.48*smooth+.42*finalEase;progress=Math.min(1,progress+(dt/12)*speedFactor*(motorDone&&motorResponded?1.25:(carDone&&responded&&!motorTriggered?1.10:1)));if(progress===1){walking=false;done=true;status.textContent='횡단 완료! 결과를 확인하세요.';showResults(); walk.disabled=true;signalUI();}}}
+ if(eventStart!==null&&!carDone){eventElapsed+=dt;const u=Math.min(1,eventElapsed/.48);carOffset=190*(1-Math.pow(1-u,2));if(u>=1)carDone=true;}
+ if(motorTriggered&&!motorDone){motorElapsed+=dt;if(motorElapsed>=1.6)motorDone=true;}
+ if(waitForResume){autoPause+=dt;
+   if(motorTriggered){if(motorDone){if(!motorResponded)motorMissed=true;if(autoPause>=1.85){waitForResume=false;walking=true;status.textContent=motorMissed?'오토바이 위험을 놓쳤습니다. 횡단을 계속합니다.':'오토바이 통과 확인 · 자동으로 다시 걷습니다.';}}}
+   else if(carDone){if(autoPause>=1.05){if(!responded)carMissed=true;waitForResume=false;walking=true;status.textContent=carMissed?'자동차 위험을 놓쳤습니다. 횡단을 계속합니다.':'차량 정지 확인 · 자동으로 다시 걷습니다.';}}
+ }
+ draw();requestAnimationFrame(tick)}
+walk.onclick=()=>{if(done||signalJudged)return;if(signalPhase==='red'){signalMistakes++;status.textContent='빨간불에 걸어가기를 눌렀어요. 위험 상황 '+signalMistakes+'번 겪음! 초록불까지 기다리세요.';return;}signalJudged=true;signalUI();walking=true;triggerAt=rand();status.textContent='초록 신호 확인! 좌우를 살피며 횡단을 시작합니다.';};
+document.getElementById('stop').onclick=()=>{if(done||!signalJudged)return;
+ if(motorTriggered&&!motorResponded&&!motorDone){motorResponded=true;motorReaction=motorElapsed;status.textContent=`오토바이 발견! 반응 시간 ${motorReaction.toFixed(2)}초 · 통과 후 자동 재출발`;}
+ else if(eventStart!==null&&!responded&&!carMissed&& !motorTriggered&&eventElapsed<=1.05){responded=true;carReaction=Math.max(0,(performance.now()-eventStart)/1000);status.textContent=`자동차 발견! 반응 시간 ${carReaction.toFixed(2)}초 · 잠시 후 자동 재출발`;}
+ else if(!waitForResume){status.textContent='현재 돌발 위험이 없습니다. 주변을 계속 살펴보세요.';}
+};
+function resetGame(){document.getElementById('resultOverlay').classList.remove('show');carReaction=null;carMissed=false;motorMissed=false;autoPause=0;signalPhase='red';signalTime=0;signalJudged=false;signalMistakes=0;signalUI();progress=0;walking=false;done=false;walkElapsed=0;triggerAt=rand();eventStart=null;eventElapsed=0;responded=false;carOffset=0;carDone=false;waitForResume=false;motorTriggered=false;motorElapsed=0;motorResponded=false;motorDone=false;motorReaction=0;walk.disabled=false;walk.textContent='걸어가기';status.textContent='초록불이면 걸어가기';draw()}document.getElementById('reset').onclick=resetGame;document.getElementById('resultAgain').onclick=resetGame;signalUI();triggerAt=rand();requestAnimationFrame(tick);
+</script></body></html>

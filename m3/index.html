@@ -1,0 +1,50 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>엘리베이터 층수 선택 체험</title><style>
+*{box-sizing:border-box}body{margin:0;background:#171b22;color:#fff;font-family:system-ui,'Malgun Gothic',sans-serif}.app{height:100dvh;display:flex;flex-direction:column;align-items:center;padding:12px;gap:8px}.head{width:100%;max-width:1200px;display:flex;justify-content:space-between;align-items:center;gap:12px}.pill{border-radius:30px;background:#303744;padding:9px 16px;font-weight:700}.mission{font-size:clamp(18px,3vw,28px);font-weight:800}.mission strong{color:#ffe29b}.stage{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;position:relative}.picture{position:relative;display:inline-block;max-width:100%;max-height:100%;line-height:0;filter:drop-shadow(0 4px 18px #0007)}.picture img{display:block;max-width:100%;max-height:calc(100dvh - 115px);width:auto;height:auto;object-fit:contain}.hit{position:absolute;border:0;border-radius:50%;background:transparent;transform:translate(-50%,-50%);cursor:pointer;touch-action:manipulation;padding:0}.hit:focus-visible{outline:3px solid #fff}.hit.on{background:radial-gradient(ellipse,#ffe6a5aa 0%,#ffd36a66 50%,#ffe2a000 75%);box-shadow:0 0 12px 5px #ffdc85a0,inset 0 0 10px #ffefb7}.debug .hit{outline:2px dashed #00f0ed99;background:#00ffdd1c}.foot{font-size:13px;color:#c5cbd5;display:flex;gap:12px;align-items:center}.foot button,.restart{background:#343e4d;color:white;border:1px solid #647185;border-radius:10px;padding:7px 12px;cursor:pointer}.result{margin:auto;text-align:center;background:#252d38;border:1px solid #596476;border-radius:20px;padding:30px;max-width:460px;width:95%}.result h1{font-size:27px}.stat{font-size:25px;margin:15px}.stat b{color:#ffdf90}.details{line-height:2;text-align:left;display:inline-block}.restart{font-size:18px;margin-top:15px;padding:12px 26px}@media(max-width:700px){.app{padding:8px}.head{gap:5px}.pill{font-size:12px;padding:8px}.mission{font-size:18px}.picture img{max-height:calc(100dvh - 105px)}}
+
+/* Start overlay above closed doors */
+.start-layer{position:absolute;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;background:#0e141c55;transition:opacity .35s}
+.start-panel{background:#17202de8;border:1px solid #b4bec788;border-radius:20px;padding:26px 32px;text-align:center;box-shadow:0 12px 35px #0008;max-width:90%}
+.start-panel h1{font-size:clamp(21px,3vw,30px);margin:0 0 10px}.start-panel p{font-size:clamp(14px,2vw,17px);line-height:1.6;margin:0 0 20px;color:#e1e6ec}
+.start-btn{font-size:clamp(18px,2.5vw,23px);font-weight:800;background:#ffe09c;color:#24272d;border:0;border-radius:14px;padding:15px 26px;cursor:pointer;min-height:54px}
+.start-layer.hidden{opacity:0;pointer-events:none}
+/* Open doors stay at both sides of the stage, independent of image aspect ratio. */
+.stage{overflow:hidden;isolation:isolate;background:linear-gradient(90deg,#30343a,#15191e 18%,#161b20 82%,#30343a)}
+.door{position:absolute;top:0;bottom:0;width:50%;z-index:4;pointer-events:auto;background:linear-gradient(90deg,#555c61 0%,#a9adb0 9%,#747b80 21%,#b9bec0 37%,#777d81 53%,#aeb3b5 77%,#565e63 100%);box-shadow:inset 0 0 30px #15181b70,0 0 15px #0008;transition:transform 1.85s cubic-bezier(.45,0,.16,1);}
+.door:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,#ffffff0b 2px,transparent 4px,transparent 9px);opacity:.45}
+.door:after{content:'';position:absolute;top:0;bottom:0;width:6px;background:linear-gradient(90deg,#3b4145,#d1d4d5,#62696e);box-shadow:0 0 10px #fff5}
+.door.left{left:0;border-right:2px solid #292f33}.door.left:after{right:0}
+.door.right{right:0;border-left:2px solid #292f33}.door.right:after{left:0}
+.stage.open .door.left{transform:translateX(calc(-1 * var(--door-travel, 0px)));pointer-events:none}
+.stage.open .door.right{transform:translateX(var(--door-travel, 0px));pointer-events:none}
+.stage.open .door{box-shadow:inset 0 0 22px #10141999,0 0 10px #0007}
+.stage:not(.open) .picture{visibility:hidden}
+.door-note{position:absolute;z-index:5;top:50%;left:50%;transform:translate(-50%,-50%);padding:12px 24px;background:#131a22cc;border:1px solid #ffffff55;border-radius:12px;font-weight:800;white-space:nowrap;pointer-events:none;transition:opacity .4s}
+.stage.open .door-note{opacity:0}
+@media(prefers-reduced-motion:reduce){.door{transition-duration:.3s}}
+</style></head><body><main class="app"><header class="head"><div id="progress" class="pill">1 / 3</div><div class="mission" id="mission">문 열기 버튼을 눌러 시작하세요</div><div class="pill">엘리베이터</div></header><section class="stage" id="stage"><div class="door left" aria-hidden="true"></div><div class="door right" aria-hidden="true"></div><div class="door-note" aria-hidden="true">엘리베이터 문이 열립니다</div><div class="start-layer" id="startLayer"><div class="start-panel"><h1>엘리베이터 층수 선택</h1><button class="start-btn" id="startBtn" type="button">엘리베이터 문 열기</button></div></div><div class="picture" id="picture"><img id="sceneImage" src="scene1.png" alt="엘리베이터 버튼판"></div></section><footer class="foot"><span>버튼을 한 번 눌러 선택하세요</span></footer></main><script>
+const floors=['7','15','6','14','5','13','4','12','3','11','2','10','1','9','B1','8'];
+const left=['7','6','5','4','3','2','1','B1'],right=['15','14','13','12','11','10','9','8'];
+const raw=[
+{L:[[38.689,17.003],[38.911,27.5],[38.689,37.554],[38.911,47.608],[38.689,57.218],[38.689,67.863],[38.911,77.474],[38.468,87.675]],R:[[66.633,17.151],[66.633,27.352],[66.19,37.702],[66.855,47.312],[66.633,57.662],[66.855,67.568],[66.855,77.917],[67.52,87.675]]},
+{L:[[40.685,13.159],[40.464,23.804],[40.685,33.858],[40.242,44.799],[40.242,55.296],[40.242,65.35],[40.464,76.291],[40.685,87.232]],R:[[61.976,19.221],[61.976,28.535],[61.532,37.702],[61.754,47.312],[61.754,56.331],[62.198,66.385],[62.641,75.404],[62.863,85.31]]},
+{L:[[43.524,20.412],[42.918,26.213],[42.192,32.444],[41.708,39.319],[41.042,47.914],[40.073,56.508],[39.226,66.391],[37.531,79.927]],R:[[56.357,20.626],[57.083,25.998],[57.81,32.229],[58.778,39.104],[59.868,47.269],[60.594,56.293],[61.563,66.821],[63.258,79.713]]}
+];
+const rounds=[{name:'정면',target:null,src:'scene1.png'},{name:'측면',target:null,src:'scene2.png'},{name:'아래 시점',target:null,src:'scene3.png'}];
+function randomizeTargets(){const pool=[...floors];for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}rounds.forEach((r,i)=>r.target=pool[i]);}
+let step=0,locked=true,showDebug=false,answers=[];let doorsReady=false;let started=false;let roundStartedAt=0;
+function startRoundTimer(){roundStartedAt=performance.now();locked=false;}
+const pic=document.getElementById('picture'),img=document.getElementById('sceneImage'),stageEl=document.getElementById('stage');
+// Door edges meet the image edges; leave a 4px overlap so no dark seam appears.
+function alignDoors(){const stageRect=stageEl.getBoundingClientRect();const imageRect=img.getBoundingClientRect();const travel=Math.max(0,Math.min(stageRect.width/2, imageRect.width/2-4));stageEl.style.setProperty('--door-travel',travel+'px')}
+img.addEventListener('load',()=>requestAnimationFrame(alignDoors));window.addEventListener('resize',alignDoors);if(window.ResizeObserver){new ResizeObserver(alignDoors).observe(pic)}
+function make(){locked=!doorsReady;document.getElementById('progress').textContent=(step+1)+' / 3';document.getElementById('mission').innerHTML=started?'목표: <strong>'+rounds[step].target+'층</strong> 버튼을 누르세요':'문 열기 버튼을 눌러 시작하세요';img.src=rounds[step].src;pic.querySelectorAll('.hit').forEach(x=>x.remove());
+ [['L',left],['R',right]].forEach(([side,labels])=>labels.forEach((floor,i)=>{const [x,y]=raw[step][side][i];const b=document.createElement('button');b.className='hit';b.type='button';b.setAttribute('aria-label',floor+'층 선택');b.style.left=x+'%';b.style.top=y+'%';// 이미지 기준 퍼센트 크기: 3차는 상단이 더 작고 하단이 더 큼
+ let w,h;if(step===2){w=4.6+i*0.67;h=4.5+i*0.76;}else if(step===1){w=12.4;h=8.4;}else{w=13.5;h=8.2;}
+ b.style.width=w+'%';b.style.height=h+'%';b.addEventListener('click',()=>select(floor,b));pic.appendChild(b)}));pic.classList.toggle('debug',showDebug);requestAnimationFrame(alignDoors);if(doorsReady){if(img.complete)requestAnimationFrame(startRoundTimer);else img.addEventListener('load',()=>requestAnimationFrame(startRoundTimer),{once:true});}}
+function select(floor,b){if(locked)return;locked=true;b.classList.add('on');answers.push({scene:rounds[step].name,target:rounds[step].target,chosen:floor,correct:floor===rounds[step].target,timeMs:Math.max(0,performance.now()-roundStartedAt)});setTimeout(()=>{step++;if(step<3)make();else finish()},650)}
+function formatTime(ms){return (ms/1000).toFixed(1)+'초'}
+function finish(){const ok=answers.filter(a=>a.correct).length;const avg=answers.reduce((sum,a)=>sum+a.timeMs,0)/answers.length;parent.postMessage({type:'missionDone',mission:3,value:ok+' / 3',detail:{averageMs:avg,answers}},'*');document.querySelector('.app').innerHTML='<div class="result"><h1>엘리베이터 체험 결과</h1><div class="stat">정답 <b>'+ok+'개</b> · 오답 <b>'+(3-ok)+'개</b></div><div class="stat" style="font-size:20px">평균 버튼 선택 시간 <b>'+formatTime(avg)+'</b></div><div class="details">'+answers.map((a,i)=>(i+1)+'차 '+a.scene+' · 목표 '+a.target+'층 / 선택 '+a.chosen+'층 '+(a.correct?'✓':'✕')+' · '+formatTime(a.timeMs)).join('<br>')+'</div><p style="font-size:14px;color:#cbd2db">선택 시간은 목표 층수가 제시되고 버튼을 누를 때까지의 시간입니다.<br>속도는 점수에 반영하지 않습니다.</p><p>고글을 착용한 상태에서 층수 선택이 얼마나 어려웠는지 생각해 보세요.</p><button class="restart" onclick="location.reload()">다시 체험하기</button></div>'}
+
+document.getElementById('startBtn').addEventListener('click',()=>{if(started)return;started=true;randomizeTargets();make();document.getElementById('startLayer').classList.add('hidden');setTimeout(()=>{alignDoors();stageEl.classList.add('open');setTimeout(()=>{doorsReady=true;startRoundTimer()},1950)},260);});
+make();
+</script></body></html>

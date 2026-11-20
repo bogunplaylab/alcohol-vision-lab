@@ -1,0 +1,61 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>음주 위험 실험실</title><style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,'Malgun Gothic',sans-serif;background:#14243b;color:#fff}button{font:inherit;cursor:pointer;border:0;font-weight:900}.page{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2vh 3vw;gap:2.3vh;text-align:center}.eyebrow{color:#bed2ed;font-size:clamp(14px,2vw,22px);font-weight:700}.heading{font-size:clamp(30px,4.4vw,58px);margin:0}.sub{font-size:clamp(16px,2vw,25px);color:#d5e1f0;margin:0}.choices{display:flex;gap:2vw;width:min(1050px,100%);justify-content:center}.choice{flex:1;min-height:17vh;background:#304a68;border:2px solid #708ba9;color:white;border-radius:20px;padding:20px;font-size:clamp(21px,3vw,34px)}.choice small{display:block;font-size:clamp(14px,1.5vw,19px);font-weight:500;margin-top:9px}.choice:focus-visible,.primary:focus-visible{outline:5px solid #f4cb4c}.primary{background:#f4c94c;color:#17283f;border-radius:18px;padding:2.5vh 5vw;font-size:clamp(23px,3vw,38px);min-width:min(480px,90%)}.secondary{background:#314b68;color:white;border:2px solid #8ca6c4;border-radius:15px;padding:12px 22px;font-size:clamp(16px,2vw,23px)}.back{position:absolute;top:14px;left:16px;z-index:4;background:#243a55;color:white;padding:10px 18px;border-radius:12px;font-size:17px}.hidden{display:none!important}#game{width:100%;height:100dvh;border:0;display:block;background:#101b2d}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2vw;width:min(1000px,100%)}.result{background:#30465f;border-radius:18px;padding:2.8vh 2vw}.result .name{font-size:clamp(20px,2.4vw,29px);font-weight:800}.result .value{font-size:clamp(32px,5vw,64px);font-weight:900;margin:1vh 0}.result .label{font-size:clamp(14px,1.8vw,22px);color:#d1dfef}.actions{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}.note{font-size:clamp(13px,1.5vw,18px);color:#c3d2e5}#resultPage .heading{font-size:clamp(28px,3.5vw,48px)}@media(max-height:550px){.page{gap:1.2vh}.choice{min-height:15vh}.result{padding:1.5vh 2vw}.result .value{margin:.5vh 0}.heading{font-size:32px}}
+</style><link rel="stylesheet" href="jh-brand.css"><style>
+/* Brand elements are independent of the existing mission layout. */
+#home{position:relative;padding-bottom:clamp(64px,12vh,110px)}
+#jh-brand-root{position:fixed;inset:0;pointer-events:none;z-index:100;}
+#jh-brand-root .jh-brand-home{pointer-events:auto;bottom:max(8px,env(safe-area-inset-bottom));}
+#jh-brand-root .jh-brand-overlay{pointer-events:auto;}
+#jh-brand-root .jh-brand-game{position:absolute;right:max(8px,env(safe-area-inset-right));bottom:max(6px,env(safe-area-inset-bottom));color:rgba(255,255,255,.65);text-shadow:0 1px 3px rgba(0,0,0,.65);font-size:10px;}
+@media(max-height:550px){#home{padding-bottom:56px}#jh-brand-root .jh-brand-home img{width:clamp(100px,13vw,155px)}#jh-brand-root .jh-brand-home button{font-size:11px;padding:4px 8px}}
+@media(max-width:650px){#jh-brand-root .jh-brand-home img{width:clamp(95px,22vw,150px)}#jh-brand-root .jh-brand-home button{font-size:11px}}
+
+/* Only the three pre-experience navigation screens use the illustrated night backgrounds. */
+#splash,#home,#zone{position:relative;isolation:isolate;background-position:center;background-repeat:no-repeat;background-size:cover;}
+#splash{background-image:url('assets/night-title.png');padding:0;justify-content:flex-end;}
+#home,#zone{background-image:linear-gradient(180deg,rgba(9,14,57,.34),rgba(9,14,57,.47)),url('assets/night-street.png');}
+#home{padding-bottom:2vh;}
+#home .eyebrow,#zone .eyebrow{font-size:clamp(17px,2.1vw,26px);font-weight:900;color:#ffdd6a;text-shadow:0 3px 8px #11123d;}
+#home .heading{font-size:clamp(25px,3.5vw,48px);max-width:95%;line-height:1.25;text-shadow:0 3px 10px #14143c;}
+#zone .heading{text-shadow:0 3px 10px #14143c;}
+#home .sub{color:white;font-weight:800;text-shadow:0 3px 8px #11123d;}
+#home .choice,#zone .choice{background:linear-gradient(150deg,rgba(65,46,140,.96),rgba(37,58,123,.97));border:3px solid #b9a6ff;box-shadow:0 7px 0 rgba(16,14,64,.6),0 12px 28px rgba(10,8,40,.4);text-shadow:0 2px 3px #202051;}
+#home .choice:active,#zone .choice:active{transform:translateY(3px);box-shadow:0 4px 0 rgba(16,14,64,.6)}
+.splash-start{position:absolute;left:50%;bottom:clamp(84px,14vh,145px);transform:translateX(-50%);z-index:2;white-space:nowrap;padding:clamp(12px,2.2vh,23px) clamp(36px,5vw,80px);font-size:clamp(24px,3.5vw,42px);color:white;background:linear-gradient(180deg,#ff9fda 0%,#ff54ac 45%,#df2e89 100%);border:4px solid #fff1ff;border-radius:999px;box-shadow:0 8px 0 #972866,0 13px 25px #140d49aa,0 0 18px #fa84d5aa;text-shadow:0 2px 3px #9e2168;}
+.splash-start:active{transform:translate(-50%,5px);box-shadow:0 3px 0 #972866,0 8px 15px #140d49aa}
+.splash-start:focus-visible{outline:5px solid #ffdd5c;outline-offset:5px}
+@media(max-height:600px){#home,#zone{gap:1.6vh}#home .choice,#zone .choice{min-height:16vh;padding:10px 16px}#home .heading{font-size:clamp(24px,3.2vw,40px)}.splash-start{bottom:clamp(68px,13vh,95px)}}
+@media(max-width:700px){#home .choices,#zone .choices{gap:10px}#home .choice,#zone .choice{padding:10px;font-size:clamp(16px,3vw,24px)}}
+</style></head><body>
+<section id="splash" class="page"><button class="splash-start" onclick="show('home')">게임 시작하기</button></section>
+<section id="home" class="page"><div class="eyebrow">음주 위험 실험실</div><h1 class="heading">음주고글을 쓰고 네 가지 미션에 도전하세요!</h1><p class="sub">체험 방식을 선택하세요</p><div class="choices"><button class="choice" onclick="choose('split')">디벗 2대 분리 체험<small>두 구역으로 나누어 진행</small></button><button class="choice" onclick="choose('all')">디벗 1대 통합 체험<small>네 가지 미션을 연속 체험</small></button></div></section>
+<section id="zone" class="page hidden"><div class="eyebrow">2대 분리 체험</div><h1 class="heading">체험 구역 선택</h1><div class="choices"><button class="choice" onclick="setMode('a')">디벗 1 · A구역<small>골목길 → 횡단보도</small></button><button class="choice" onclick="setMode('b')">디벗 2 · B구역<small>엘리베이터 → 도어락</small></button></div><button class="secondary" onclick="show('home')">뒤로</button></section>
+<section id="ready" class="page hidden"><div class="eyebrow" id="modeName"></div><h1 class="heading">체험 준비</h1><p class="sub" id="missionNames"></p><button class="primary" onclick="startPerson()">체험 시작</button><button class="secondary" onclick="changeMode()">체험 방식 변경</button></section>
+<section id="playing" class="hidden"><iframe id="game" title="체험 미션"></iframe></section>
+<section id="transition" class="page hidden"><div class="eyebrow" id="progressLabel"></div><h1 class="heading" id="nextTitle">다음 미션</h1><button class="primary" onclick="nextMission()">다음 미션 시작</button></section>
+<section id="resultPage" class="page hidden"><div class="eyebrow" id="resultMode"></div><h1 class="heading">체험 결과</h1><div id="results" class="results"></div><div class="actions"><button class="primary" onclick="nextPerson()">다음 체험자 시작</button></div><div class="note">도우미가 활동지에 기록한 뒤 다음 체험자를 시작하세요.</div></section>
+<script>
+const labels={1:['골목길','평균 멈춤 반응 시간'],2:['횡단보도','안전 대처'],3:['엘리베이터','정답'],4:['도어락','비밀번호 오입력']};const paths={1:'m1/index.html',2:'m2/index.html',3:'m3/index.html',4:'m4/index.html'};const sequences={a:[1,2],b:[3,4],all:[1,2,3,4]};const names={a:'디벗 1 · A구역',b:'디벗 2 · B구역',all:'1대 통합 체험'};let mode=null,position=0,records={},done=false;
+function show(id){for(const s of document.querySelectorAll('body>section'))s.classList.toggle('hidden',s.id!==id)}
+function choose(v){if(v==='split')show('zone');else setMode('all')}
+function setMode(v){mode=v;document.getElementById('modeName').textContent=names[v];document.getElementById('missionNames').textContent=sequences[v].map(i=>labels[i][0]).join(' → ');show('ready')}
+function changeMode(){mode=null;show('home')}
+function startPerson(){records={};position=0;loadMission()}
+function loadMission(){done=false;const id=sequences[mode][position];const f=document.getElementById('game');f.src=paths[id]+'?run='+Date.now();show('playing')}
+window.addEventListener('message',e=>{if(e.source!==document.getElementById('game').contentWindow||!mode||e.data?.type!=='missionDone')return;const id=sequences[mode][position];if(e.data.mission!==id||done)return;done=true;records[id]={value:e.data.value,detail:e.data.detail};document.getElementById('game').src='about:blank';if(position+1<sequences[mode].length){document.getElementById('progressLabel').textContent=labels[id][0]+' 완료';document.getElementById('nextTitle').textContent='다음: '+labels[sequences[mode][position+1]][0];show('transition')}else renderResults()});
+function nextMission(){position++;loadMission()}
+function conciseResult(id,record){if(!record)return '—';if(id===2){const d=record.detail||{};return '성공 '+[d.signal,d.car,d.motor].filter(Boolean).length+'회'}if(id===3){const d=record.detail||{};if(Array.isArray(d.answers))return '정답 '+d.answers.filter(a=>a.correct).length+'회';const n=parseInt(record.value,10);return Number.isFinite(n)?'정답 '+n+'회':record.value}if(id===4)return '오입력 '+record.value;return record.value}
+function renderResults(){document.getElementById('resultMode').textContent=names[mode];document.getElementById('results').innerHTML=sequences[mode].map(id=>'<div class="result"><div class="name">'+labels[id][0]+'</div><div class="value">'+conciseResult(id,records[id])+'</div><div class="label">'+(id===2?'안전하게 대처한 횟수':id===3?'올바른 층 선택 횟수':labels[id][1])+'</div></div>').join('');show('resultPage')}
+function nextPerson(){records={};position=0;loadMission()}
+</script><script src="jh-brand.js"></script><script>
+/* Only brand elements are switched; the game's original navigation is untouched. */
+(function(){
+ const originalShow=window.show;
+ window.show=function(id){originalShow(id);if(window.JHBrand){
+   if(id==='splash') JHBrand.mount({mode:'home',logo:'small',assetBase:'assets/'});
+   else if(id==='playing') JHBrand.mount({mode:'game'});
+   else {const host=document.getElementById('jh-brand-root');if(host)host.remove();}
+ }};
+ window.show('splash');
+})();
+</script></body></html>
